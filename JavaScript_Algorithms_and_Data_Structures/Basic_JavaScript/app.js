@@ -721,7 +721,7 @@ will convert data types of values while comparing.*/
 1 != "1"; // false
 1 != "1"; // false
 1 != true; // false
-0 != fasle; // false
+0 != false; // false
 
 function testNotEqual(val) {
   if (val != 99) {
@@ -1024,4 +1024,380 @@ function isEqual(a, b) {
 
 function isEqual(a, b) {
   return a === b;
+}
+
+// *** Build JavaScript Objects *** //
+
+// Objects are similar to arrays, except that instead of using indexes to access and modify their data, you access the data in objects through what are called properties.
+
+// Objects are useful for storing data in a structured way, and can represent real world objects, like a cat.
+
+var cat = {
+  name: "Whiskers",
+  legs: 4,
+  tails: 1,
+  enemies: ["Water", "Dogs"],
+};
+
+var anotherObject = {
+  make: "Ford",
+  5: "five",
+  model: "focus",
+};
+
+// *** Accessing Object Properties with Dot Notation *** //
+
+// There are two ways to access the properties of an object: dot notation (.) and bracket notation ([]), similar to an array.
+
+// Dot notation is what you use when you know the name of the property you're trying to access ahead of time.
+
+var myObj = {
+  prop1: "val1",
+  prop2: "val2",
+};
+var prop1val = myObj.prop1; // val1
+var prop2val = myObj.prop2; // val2
+
+// another example
+
+var testObj = {
+  hat: "ballcap",
+  shirt: "jersey",
+  shoes: "cleats",
+};
+
+var hatValue = testObj.hat;
+var shirtValue = testObj.shirt;
+
+// *** Accessing Object Properties with Bracket Notation *** //
+
+// The second way to access the properties of an object is bracket notation ([]). If the property of the object you are trying to access has a space in its name, you will need to use bracket notation.
+
+// However, you can still use bracket notation on object properties without spaces.
+
+var myObj = {
+  "Space Name": "Kirk",
+  "More Space": "Spock",
+  NoSpace: "USS Enterprise",
+};
+myObj["Space Name"]; // Kirk
+myObj["More Space"]; // Spock
+myObj["NoSpace"]; // USS Enterprise
+
+// *** Accessing Object Properties with Variables *** //
+
+/*
+Another use of bracket notation on objects is to access a property which is
+stored as the value of a variable. This can be very useful for iterating
+through an object's properties or when accessing a lookup table.
+*/
+
+// Here is an example of using a variable to access a property:
+
+var dogs = {
+  Fido: "Mutt",
+  Hunter: "Doberman",
+  Snoopie: "Beagle",
+};
+var myDog = "Hunter";
+var myBreed = dogs[myDog];
+console.log(myBreed); // "Doberman"
+
+// Another way you can use this concept is when the property's name is collected dynamically during the program execution, as follows:
+
+var someObj = {
+  propName: "John",
+};
+function propPrefix(str) {
+  var s = "prop";
+  return s + str;
+}
+var someProp = propPrefix("Name"); // someProp now holds the value 'propName'
+console.log(someObj[someProp]); // "John"
+
+// *** Updating Object Properties *** //
+
+// After you've created a JavaScript object, you can update its properties at any time just like you would update any other variable. You can use either dot or bracket notation to update.
+
+var myDog = {
+  name: "Coder",
+  legs: 4,
+  tails: 1,
+  friends: ["freeCodeCamp Campers"],
+};
+
+// Only change code below this line
+
+myDog.name = "Happy Coder";
+console.log(myDog);
+
+// *** Add New Properties to a JavaScript Object *** //
+
+var myDog = {
+  name: "Happy Coder",
+  legs: 4,
+  tails: 1,
+  friends: ["freeCodeCamp Campers"],
+};
+
+myDog["bark"] = "wow-wow";
+
+// *** Delete Properties from a JavaScript Object ***
+
+// We can also delete properties from objects like this:
+
+var myDog = {
+  name: "Happy Coder",
+  legs: 4,
+  tails: 1,
+  friends: ["freeCodeCamp Campers"],
+  bark: "woof",
+};
+
+delete myDog.tails;
+
+// *** Using Objects for Lookups *** //
+
+/*
+Objects can be thought of as a key/value storage, like a dictionary. 
+If you have tabular data, you can use an object to "lookup" values 
+rather than a switch statement or an if/else chain.
+This is most useful when you know that your input data is limited to a
+certain range.
+*/
+
+function phoneticLookup(val) {
+  // Only change code below this line
+  // switch(val) {
+  //   case "alpha":
+  //     result = "Adams";
+  //     break;
+  //   case "bravo":
+  //     result = "Boston";
+  //     break;
+  //   case "charlie":
+  //     result = "Chicago";
+  //     break;
+  //   case "delta":
+  //     result = "Denver";
+  //     break;
+  //   case "echo":
+  //     result = "Easy";
+  //     break;
+  //   case "foxtrot":
+  //     result = "Frank";
+  // }
+
+  var lookup = {
+    alpha: "Adams",
+    bravo: "Boston",
+    charlie: "Chicago",
+    delta: "Denver",
+    echo: "Easy",
+    foxtrot: "Frank",
+  };
+  var result = lookup[val];
+  // Only change code above this line
+  return result;
+}
+
+phoneticLookup("charlie");
+
+// *** Testing Objects for Properties *** //
+
+/* 
+Sometimes it is useful to check if the property of a given object exists or not.
+We can use the .hasOwnProperty(propname) method of objects to determine if that
+object has the given property name. .hasOwnProperty() returns true or false if
+the property is found or not.
+*/
+
+var myObj = {
+  top: "hat",
+  bottom: "pants",
+};
+myObj.hasOwnProperty("top"); // true
+myObj.hasOwnProperty("middle"); // falses
+
+// *** Accessing Nested Objects *** //
+
+var ourStorage = {
+  desk: {
+    drawer: "stapler",
+  },
+  cabinet: {
+    "top drawer": {
+      folder1: "a file",
+      folder2: "secrets",
+    },
+    "bottom drawer": "soda",
+  },
+};
+ourStorage.cabinet["top drawer"].folder2; // "secrets"
+ourStorage.desk.drawer; // "stapler"
+
+// *** Accessing Nested Arrays *** //
+
+// As we have seen in earlier examples, objects can contain both nested objects and nested arrays. Similar to accessing nested objects, Array bracket notation can be chained to access nested arrays.
+
+var ourPets = [
+  {
+    animalType: "cat",
+    names: ["Meowzer", "Fluffy", "Kit-Cat"],
+  },
+  {
+    animalType: "dog",
+    names: ["Spot", "Bowser", "Frankie"],
+  },
+];
+ourPets[0].names[1]; // "Fluffy"
+ourPets[1].names[0]; // "Spot"
+
+// Object Examples
+
+/* var a = {
+fname: 'yahoo',
+lname: 'baba',
+age: 22,
+email: 'yahoo@gmail.com',
+favMovies: ['dhoom', 'hulchul', 'hum'],
+living: {
+  city: 'karachi',
+  country: 'pakistan'
+},
+salary: function(){
+  return 25000;
+},
+fullname: function(){
+  return a.fname+" "+a.lname;
+}
+}
+
+document.write(a.fname);
+console.log(a);
+document.write(a.salary());
+
+document.write(a.fullname());
+
+document.write(a.living.city) */
+
+/* 
+var b = new Object();
+
+b.firstname= 'abid';
+b.lastname='shaka';
+b.age = 25;
+
+console.log(b); */
+
+// *** Iterate with JavaScript While Loops *** //
+
+// The first type of loop we will learn is called a while loop because it runs "while" a specified condition is true and stops once that condition is no longer true.
+
+var ourArray = [];
+var i = 0;
+while (i < 5) {
+  ourArray.push(i);
+  i++;
+}
+
+// *** Iterate with JavaScript For Loops *** //
+
+// The most common type of JavaScript loop is called a for loop because it runs "for" a specific number of times
+
+// For loops are declared with three optional expressions separated by semicolons:
+
+// for ([initialization]; [condition]; [final-expression])
+
+var ourArray = [];
+for (var i = 0; i < 5; i++) {
+  ourArray.push(i);
+}
+
+// *** Iterate Through an Array with a For Loop *** //
+
+// A common task in JavaScript is to iterate through the contents of an array. One way to do that is with a for loop. This code will output each element of the array arr to the console:
+
+var arr = [10, 9, 8, 7, 6];
+for (var i = 0; i < arr.length; i++) {
+  console.log(arr[i]);
+}
+
+// *** Nesting For Loops *** //
+
+// If you have a multi-dimensional array, you can use the same logic as the prior waypoint to loop through both the array and any sub-arrays. Here is an example:
+
+var arr = [
+  [1, 2],
+  [3, 4],
+  [5, 6],
+];
+for (var i = 0; i < arr.length; i++) {
+  for (var j = 0; j < arr[i].length; j++) {
+    console.log(arr[i][j]);
+  }
+}
+
+// *** Iterate with JavaScript Do...While Loops *** //
+
+/*
+The next type of loop you will learn is called a do...while loop.
+It is called a do...while loop because it will first do one pass
+of the code inside the loop no matter what, and then continue
+to run the loop while the specified condition evaluates to true.
+*/
+
+// Essentially, a do...while loop ensures that the code inside the loop will run at least once
+
+var ourArray = [];
+var i = 0;
+do {
+  ourArray.push(i);
+  i++;
+} while (i < 5);
+
+// *** Use the Conditional (Ternary) Operator *** //
+
+// The conditional operator, also called the ternary operator, can be used as a one line if-else expression.
+
+// The following function uses an if-else statement to check a condition:
+
+function findGreater(a, b) {
+  if (a > b) {
+    return "a is greater";
+  } else {
+    return "b is greater";
+  }
+}
+
+// This can be re-written using the conditional operator:
+
+function findGreater(a, b) {
+  return a > b ? "a is greater" : "b is greater";
+}
+
+// *** Use Multiple Conditional (Ternary) Operators *** //
+
+// In the previous challenge, you used a single conditional operator. You can also chain them together to check for multiple conditions.
+
+// The following function uses if, else if, and else statements to check multiple conditions:
+
+function findGreaterOrEqual(a, b) {
+  if (a === b) {
+    return "a and b are equal";
+  } else if (a > b) {
+    return "a is greater";
+  } else {
+    return "b is greater";
+  }
+}
+
+// The above function can be re-written using multiple conditional operators:
+
+function findGreaterOrEqual(a, b) {
+  return a === b
+    ? "a and b are equal"
+    : a > b
+    ? "a is greater"
+    : "b is greater";
 }
